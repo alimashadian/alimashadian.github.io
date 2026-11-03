@@ -207,6 +207,8 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
 .role { margin-top: 1.2rem; font-size: clamp(1.15rem, 2vw, 1.35rem); font-weight: 500; line-height: 1.45; color: var(--heading); }
 .meta { font-size: 0.92rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .plate svg.diagram { max-width: 420px; }
+.row.wide { grid-template-columns: minmax(0, 1fr); }
+.row.wide .media { max-width: 1000px; margin-block: 0.3rem 0.4rem; }
 .cards { padding-bottom: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 1.75rem); }
 .card {
   background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem;
@@ -386,60 +388,14 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
         </div>
       </article>
 
-      <article class="row">
-        <figure class="media"><div class="plate">
-          <svg class="diagram" viewBox="0 0 420 500" role="img" aria-label="How MPSimBench grades an agent. 55 tasks on four solvers (OpenFOAM, RheoTool, HemoCell and Basilisk), changed so their answers can't be looked up, go to an AI agent working in a sandbox. Hidden physics graders then check the results: right physics counts as solved, and a simulation that runs but gives wrong physics is caught as a failure." font-family="Barlow Semi Condensed, Arial Narrow, sans-serif">
-            <defs>
-              <marker id="mz-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#009bdf"/></marker>
-              <marker id="mz-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c0392b"/></marker>
-            </defs>
-            <rect width="420" height="500" rx="12" fill="#f3f6fb"/>
-            <g fill="#ffffff" stroke="#9aa9c7" stroke-width="1.2">
-              <rect x="24" y="20" width="180" height="40" rx="8"/>
-              <rect x="216" y="20" width="180" height="40" rx="8"/>
-              <rect x="24" y="68" width="180" height="40" rx="8"/>
-              <rect x="216" y="68" width="180" height="40" rx="8"/>
-            </g>
-            <g text-anchor="middle" fill="#243673" font-size="16" font-weight="600">
-              <text x="114" y="45">OpenFOAM</text>
-              <text x="306" y="45">RheoTool</text>
-              <text x="114" y="93">HemoCell</text>
-              <text x="306" y="93">Basilisk</text>
-            </g>
-            <g fill="#ffffff" stroke="#243673" stroke-width="1.5">
-              <rect x="60" y="136" width="300" height="70" rx="10"/>
-              <rect x="60" y="236" width="300" height="58" rx="10"/>
-            </g>
-            <rect x="60" y="324" width="300" height="58" rx="10" fill="#243673"/>
-            <rect x="24" y="422" width="180" height="58" rx="10" fill="#ffffff" stroke="#009bdf" stroke-width="1.5"/>
-            <rect x="216" y="422" width="180" height="58" rx="10" fill="#ffffff" stroke="#c0392b" stroke-width="1.5"/>
-            <g text-anchor="middle" font-weight="700" font-size="18">
-              <text x="210" y="161" fill="#243673">55 tasks</text>
-              <text x="210" y="261" fill="#243673">AI agent</text>
-              <text x="210" y="349" fill="#ffffff">Hidden physics graders</text>
-              <text x="114" y="447" fill="#243673" font-size="16">Right physics</text>
-              <text x="306" y="447" fill="#243673" font-size="16">Runs, but wrong</text>
-            </g>
-            <g text-anchor="middle" font-size="13" fill="#56647a">
-              <text x="210" y="181">from tutorials and papers, changed so</text>
-              <text x="210" y="198">answers can't be looked up</text>
-              <text x="210" y="282">Claude Code or Codex, in a sandbox</text>
-              <text x="210" y="370" fill="#dbe4ff">check the science, not just the run</text>
-              <text x="114" y="468">counts as solved</text>
-              <text x="306" y="468">caught as a failure</text>
-            </g>
-            <g stroke="#009bdf" stroke-width="2" fill="none" marker-end="url(#mz-blue)">
-              <line x1="210" y1="108" x2="210" y2="135"/>
-              <line x1="210" y1="206" x2="210" y2="235"/>
-              <line x1="210" y1="294" x2="210" y2="323"/>
-              <line x1="150" y1="382" x2="116" y2="421"/>
-            </g>
-            <line x1="270" y1="382" x2="304" y2="421" stroke="#c0392b" stroke-width="2" marker-end="url(#mz-red)"/>
-          </svg>
-        </div></figure>
+      <article class="row wide">
         <div class="copy-col">
           <h3>MPSimBench: a benchmark for AI agents on multiphysics simulation</h3>
           <p class="meta">2026 · Paper in preparation</p>
+          <figure class="media">
+            <a class="plate" href="assets/mpsimbench-overview.jpg" target="_blank" rel="noopener"><img src="assets/mpsimbench-overview.jpg" alt="Overview of MPSimBench. Top: reference simulations of four released tasks: a Kármán vortex street (Basilisk), aneurysm flow (RheoTool), hypersonic flow (OpenFOAM 13) and blood cells (HemoCell). Middle: a task bundle goes to an LLM agent and harness working in a network-isolated Apptainer container, and a hidden evaluator checks contract gates, quantities of interest against a reference, and physical invariants, then returns solved or not solved. Bottom: a task family with original, transformed and held-out members." width="2000" height="1540" loading="lazy"></a>
+            <figcaption>Overview of MPSimBench (Figure 1 of the paper). Top: reference solutions of four released tasks. Middle: an example task, the agent's sandbox and the hidden evaluator. Bottom: a task family. Select the figure to open it full size.</figcaption>
+          </figure>
           <p>Most benchmarks for AI agents check whether code runs, not whether the science is right. MPSimBench has 55 end-to-end simulation tasks built from official tutorials and peer-reviewed studies on four open-source solvers: OpenFOAM, RheoTool, HemoCell and Basilisk. Each task is changed so its answer can't be retrieved from a published example.</p>
           <p>Hidden, physics-based graders catch wrong results even when a simulation runs without errors. I built the reference solutions through more than 1,000 verification runs, and I read agent transcripts to find ways a grader could be passed without solving the task, then close them.</p>
         </div>
