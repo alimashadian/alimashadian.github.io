@@ -207,8 +207,6 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
 .role { margin-top: 1.2rem; font-size: clamp(1.15rem, 2vw, 1.35rem); font-weight: 500; line-height: 1.45; color: var(--heading); }
 .meta { font-size: 0.92rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .plate svg.diagram { max-width: 420px; }
-.row.wide { grid-template-columns: minmax(0, 1fr); }
-.row.wide .media { max-width: 1000px; margin-block: 0.3rem 0.4rem; }
 .cards { padding-bottom: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 1.75rem); }
 .card {
   background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem;
@@ -388,14 +386,13 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
         </div>
       </article>
 
-      <article class="row wide">
+      <article class="row">
+        <figure class="media">
+          <a class="plate" title="Open the figure full size" href="assets/mpsimbench-overview.jpg" target="_blank" rel="noopener"><img src="assets/mpsimbench-overview.jpg" alt="Overview of MPSimBench. Top: reference simulations of four released tasks: a Kármán vortex street (Basilisk), aneurysm flow (RheoTool), hypersonic flow (OpenFOAM 13) and blood cells (HemoCell). Middle: a task bundle goes to an LLM agent and harness working in a network-isolated Apptainer container, and a hidden evaluator checks contract gates, quantities of interest against a reference, and physical invariants, then returns solved or not solved. Bottom: a task family with original, transformed and held-out members." width="2000" height="1540" loading="lazy"></a>
+        </figure>
         <div class="copy-col">
           <h3>MPSimBench: a benchmark for AI agents on multiphysics simulation</h3>
           <p class="meta">2026 · Paper in preparation</p>
-          <figure class="media">
-            <a class="plate" href="assets/mpsimbench-overview.jpg" target="_blank" rel="noopener"><img src="assets/mpsimbench-overview.jpg" alt="Overview of MPSimBench. Top: reference simulations of four released tasks: a Kármán vortex street (Basilisk), aneurysm flow (RheoTool), hypersonic flow (OpenFOAM 13) and blood cells (HemoCell). Middle: a task bundle goes to an LLM agent and harness working in a network-isolated Apptainer container, and a hidden evaluator checks contract gates, quantities of interest against a reference, and physical invariants, then returns solved or not solved. Bottom: a task family with original, transformed and held-out members." width="2000" height="1540" loading="lazy"></a>
-            <figcaption>Overview of MPSimBench (Figure 1 of the paper). Top: reference solutions of four released tasks. Middle: an example task, the agent's sandbox and the hidden evaluator. Bottom: a task family. Select the figure to open it full size.</figcaption>
-          </figure>
           <p>Most benchmarks for AI agents check whether code runs, not whether the science is right. MPSimBench has 55 end-to-end simulation tasks built from official tutorials and peer-reviewed studies on four open-source solvers: OpenFOAM, RheoTool, HemoCell and Basilisk. Each task is changed so its answer can't be retrieved from a published example.</p>
           <p>Hidden, physics-based graders catch wrong results even when a simulation runs without errors. I built the reference solutions through more than 1,000 verification runs, and I read agent transcripts to find ways a grader could be passed without solving the task, then close them.</p>
         </div>
