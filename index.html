@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/ali-mashhadian.jpg">
+<title>Ali Mashhadian</title>
+<meta name="description" content="Ali Mashhadian, mechanical engineer working on numerical simulation of particulate and complex fluid flows in microfluidic devices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap">
+<style>
+/* Layout: the original Astra + Elementor home page. Portrait hero, navy About band,
+   title bands, 50/50 skill rows and 1/3 + 2/3 project rows, then videos, publications, contact.
+   Palette and type are the original theme's: #009bdf, #243673, #758398, #f6f8fa, #BFD1FF,
+   Playfair Display for display, Barlow Semi Condensed for everything else. */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --soft: #f6f8fa;
+  --tint: #fbfcff;
+  --hero-bg: #f2f6fd;
+  --lilac: #bfd1ff;
+  --line: #e3e9f3;
+  --heading: #243673;
+  --text: #56647a;
+  --muted: #758398;
+  --primary: #009bdf;
+  --primary-strong: #007fb8;
+  --on-primary: #ffffff;
+  --about-bg: #243673;
+  --about-head: #ffffff;
+  --about-text: #dbe4ff;
+  --plate: #ffffff;
+  --shadow: rgba(36, 54, 115, 0.2);
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --wrap: 1140px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1424; --surface: #141e35; --soft: #111a2e; --tint: #0f1729; --hero-bg: #0f1830;
+    --lilac: #2c3d6b; --line: #223050; --heading: #dfe7ff; --text: #b6c1d4; --muted: #8d9ab0;
+    --primary: #38b6ef; --primary-strong: #6cc9f4; --on-primary: #06121f;
+    --about-bg: #18244a; --about-head: #ffffff; --about-text: #c9d5f5; --shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1424; --surface: #141e35; --soft: #111a2e; --tint: #0f1729; --hero-bg: #0f1830;
+  --lilac: #2c3d6b; --line: #223050; --heading: #dfe7ff; --text: #b6c1d4; --muted: #8d9ab0;
+  --primary: #38b6ef; --primary-strong: #6cc9f4; --on-primary: #06121f;
+  --about-bg: #18244a; --about-head: #ffffff; --about-text: #c9d5f5; --shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primary); text-underline-offset: 3px; }
+a:hover { color: var(--primary-strong); }
+a:focus-visible, button:focus-visible, video:focus-visible {
+  outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 3px;
+}
+h1, h2, h3, h4 { margin: 0; color: var(--heading); text-wrap: balance; }
+p { margin: 0; }
+img { max-width: 100%; }
+
+.wrap {
+  max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.skip {
+  position: absolute; left: -999px; top: 0; z-index: 20;
+  background: var(--primary); color: var(--on-primary); padding: 0.5rem 1rem;
+}
+.skip:focus { left: max(16px, env(safe-area-inset-left, 0px)); top: calc(env(safe-area-inset-top, 0px) + 8px); }
+
+/* Header: transparent bar over the hero, menu on the right (the site title was hidden) */
+.site-header { position: absolute; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 5; }
+.site-header .wrap { display: flex; justify-content: flex-end; align-items: center; min-height: 70px; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.25rem clamp(1rem, 3vw, 2.25rem); }
+.site-nav a {
+  font-weight: 600; font-size: 1.05rem; letter-spacing: 0.04em;
+  color: var(--heading); text-decoration: none; padding-block: 0.3rem;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* Hero */
+.hero { background: var(--hero-bg); position: relative; overflow: hidden; }
+.hero::after {
+  content: ""; position: absolute; width: 46vw; max-width: 620px; aspect-ratio: 1;
+  right: -12vw; top: -14vw; border-radius: 50%;
+  border: 1px solid var(--lilac); pointer-events: none;
+}
+.hero .wrap {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center; gap: clamp(2rem, 6vw, 5rem);
+  padding-block: calc(70px + clamp(2rem, 6vw, 4.5rem)) clamp(3.5rem, 8vw, 6.5rem);
+  position: relative; z-index: 1;
+}
+.hello {
+  font-family: var(--body); font-weight: 600; font-size: 1.15rem;
+  text-transform: uppercase; letter-spacing: 0.22em; color: var(--primary);
+}
+.divider { display: block; width: 72px; height: 3px; background: var(--primary); margin-block: 1.1rem 1.3rem; border-radius: 2px; }
+.name {
+  font-family: var(--display); font-weight: 800; letter-spacing: -0.01em;
+  font-size: clamp(2.9rem, 7.2vw, 5.4rem); line-height: 1.02;
+}
+.icon-list { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.9rem; }
+.icon-list li { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; font-size: 1.15rem; }
+.icon-list a { color: var(--heading); text-decoration: none; font-weight: 500; overflow-wrap: anywhere; }
+.icon-list a:hover { color: var(--primary); }
+.ico { width: 26px; height: 26px; flex: none; color: var(--primary); }
+.inner { fill: var(--on-primary); }
+.copy {
+  font: 600 0.78rem/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.42rem 0.7rem; border-radius: 4px; cursor: pointer;
+  background: var(--surface); color: var(--muted); border: 1px solid var(--line);
+}
+.copy:hover { color: var(--primary); border-color: var(--primary); }
+.portrait { position: relative; justify-self: center; width: min(100%, 410px); margin: 0; }
+.portrait::before {
+  content: ""; position: absolute; inset: 7% -7% -5% 9%;
+  background: var(--lilac); border-radius: 240px 240px 28px 28px;
+}
+.portrait img {
+  position: relative; display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: 240px 240px 28px 28px; box-shadow: 0 28px 60px -30px var(--shadow);
+}
+
+/* About band */
+.about { background: var(--about-bg); color: var(--about-text); text-align: center; }
+.about .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; justify-items: center; gap: 1.4rem; }
+.about h2 { color: var(--about-head); font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 4.6vw, 3.2rem); }
+.about .divider { margin: 0; background: var(--primary); }
+.about p { max-width: 62ch; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.65; font-weight: 400; }
+
+/* Title bands */
+.band-title { background: var(--soft); position: relative; overflow: hidden; text-align: center; }
+.band-title .wrap { padding-block: clamp(3rem, 7vw, 5rem); display: grid; justify-items: center; gap: 1rem; position: relative; }
+.band-title .wrap::before {
+  content: attr(data-mark); position: absolute; left: 50%; top: 50%; transform: translate(-50%, -52%);
+  font-family: var(--display); font-weight: 800; font-size: clamp(4.5rem, 15vw, 11rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1.5px var(--lilac); white-space: nowrap; pointer-events: none;
+}
+.band-title h2 { position: relative; font-family: var(--display); font-weight: 800; font-size: clamp(2.3rem, 5vw, 3.6rem); }
+.band-title .divider { position: relative; margin: 0; }
+.band-title p { position: relative; max-width: 60ch; color: var(--muted); }
+
+/* Rows */
+.rows { padding-block: clamp(2.5rem, 5vw, 4rem); display: grid; gap: clamp(3rem, 6vw, 5rem); }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.75rem, 5vw, 4.5rem); align-items: center; }
+.row.project { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; }
+.copy-col { display: grid; gap: 0.9rem; min-width: 0; }
+.copy-col h3 { font-family: var(--body); font-weight: 700; font-size: clamp(1.45rem, 2.4vw, 1.85rem); line-height: 1.2; }
+.copy-col h3::after { content: ""; display: block; width: 44px; height: 3px; background: var(--primary); border-radius: 2px; margin-top: 0.8rem; }
+.copy-col p { max-width: 68ch; }
+.media { margin: 0; min-width: 0; display: grid; gap: 0.7rem; }
+.plate {
+  background: var(--plate); border: 1px solid var(--line); border-radius: 16px; padding: 12px;
+  box-shadow: 0 22px 48px -30px var(--shadow); display: grid; place-items: center; overflow: hidden;
+}
+.plate img, .plate svg { display: block; width: 100%; height: auto; border-radius: 10px; }
+.plate.photo { padding: 0; }
+.plate.photo img { border-radius: 16px; }
+.plate.tall img { max-height: 560px; width: auto; max-width: 100%; }
+.thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.thumbs .plate { padding: 0; }
+.thumbs img { border-radius: 16px; aspect-ratio: 3 / 4; object-fit: cover; }
+figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
+/* Videos */
+.videos { padding-block: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2rem); }
+.video-card { margin: 0; display: grid; gap: 0.75rem; align-content: start; }
+.video-card .plate { padding: 0; aspect-ratio: 16 / 10; background: var(--plate); }
+.video-card video { display: block; width: 100%; height: 100%; object-fit: contain; background: var(--plate); }
+.video-card h3 { font-family: var(--body); font-weight: 700; font-size: 1.25rem; line-height: 1.25; }
+.video-card p { font-size: 1rem; }
+
+/* Publications */
+.pubs-wrap { padding-block: clamp(2.5rem, 5vw, 4rem); display: grid; gap: 3rem; }
+.highlights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2rem); }
+.highlights .plate img { max-height: 380px; width: auto; }
+.pub-group h3 { font-family: var(--body); font-weight: 700; font-size: 1.6rem; margin-bottom: 1rem; }
+.pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.pubs li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
+.yr { font-family: var(--display); font-weight: 800; font-size: 1.2rem; color: var(--primary); font-variant-numeric: tabular-nums lining-nums; line-height: 1.5; }
+.pubs p { max-width: 80ch; }
+.pubs strong { color: var(--heading); font-weight: 700; }
+.badge {
+  display: inline-block; vertical-align: 0.12em; margin-left: 0.45rem;
+  font: 700 0.72rem/1 var(--body); text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.32rem 0.55rem; border-radius: 3px; background: var(--primary); color: var(--on-primary);
+}
+
+/* Contact */
+.contact-cards { padding-block: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 1.75rem); }
+.contact-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem;
+  box-shadow: 0 22px 48px -34px var(--shadow); display: grid; gap: 0.6rem; align-content: start; min-width: 0;
+}
+.contact-card .ico { width: 34px; height: 34px; }
+.contact-card h3 { font-family: var(--body); font-weight: 700; font-size: 1.3rem; }
+.contact-card .value { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: center; overflow-wrap: anywhere; }
+
+.site-footer { background: var(--soft); border-top: 1px solid var(--line); }
+.site-footer .wrap { padding-block: 1.6rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; font-size: 0.95rem; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .videos { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .contact-cards { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+}
+@media (max-width: 780px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .portrait { order: -1; width: min(72%, 300px); justify-self: start; }
+  .row, .row.project { grid-template-columns: minmax(0, 1fr); }
+  .highlights { grid-template-columns: minmax(0, 1fr); }
+  .plate.tall img { max-height: 460px; }
+}
+@media (max-width: 600px) {
+  .videos { grid-template-columns: minmax(0, 1fr); }
+  .pubs li { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor"/><path class="inner" d="M5.5 8.2c0-.7.5-1.2 1.2-1.2h10.6c.7 0 1.2.5 1.2 1.2v.3L12 12.6 5.5 8.5v-.3zm0 2.1 6.5 4.1 6.5-4.1v5.5c0 .7-.5 1.2-1.2 1.2H6.7c-.7 0-1.2-.5-1.2-1.2v-5.5z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor"/><circle class="inner" cx="7.6" cy="7.4" r="1.6"/><rect class="inner" x="6.2" y="9.9" width="2.8" height="8"/><path class="inner" d="M11.2 9.9h2.7v1.2c.4-.8 1.4-1.4 2.8-1.4 2.4 0 3.1 1.5 3.1 3.7v4.5h-2.8v-4c0-1.1-.3-1.9-1.3-1.9-1 0-1.7.7-1.7 2v3.9h-2.8z"/></symbol>
+  <symbol id="i-scholar" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor"/><path class="inner" d="M12 5.2 3.8 9.6 12 14l6.6-3.5v4.3h1.5V9.6L12 5.2zm-4.9 6.9v2.6c0 1.6 2.2 2.9 4.9 2.9s4.9-1.3 4.9-2.9v-2.6L12 14.7l-4.9-2.6z"/></symbol>
+</svg>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="#home">Home</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div>
+        <p class="hello">Hello, I am</p>
+        <span class="divider" aria-hidden="true"></span>
+        <h1 class="name">Ali Mashhadian</h1>
+        <ul class="icon-list">
+          <li>
+            <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+            <a id="email-hero" href="mailto:ali.mashhadian@mail.utoronto.ca">ali.mashhadian@mail.utoronto.ca</a>
+            <button class="copy" type="button" id="copy-email-hero" data-copy="ali.mashhadian@mail.utoronto.ca" data-target="email-hero">Copy</button>
+          </li>
+          <li>
+            <svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg>
+            <a href="https://www.linkedin.com/in/ali-mashhadian-3524581b6/" target="_blank" rel="noopener">LinkedIn</a>
+          </li>
+          <li>
+            <svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg>
+            <a href="https://scholar.google.com/citations?user=xrf7yGUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          </li>
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img src="assets/ali-mashhadian.jpg" alt="Portrait of Ali Mashhadian" width="640" height="800">
+      </figure>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <h2>About me</h2>
+      <span class="divider" aria-hidden="true"></span>
+      <p>I am a Mechanical Engineer with a Master's degree from the University of Toronto. My expertise lies in the numerical simulation of particulate flows and complex fluid flows within microfluidic devices. In addition to theoretical knowledge, I design and fabricate microfluidic devices, including cell and microparticle separators as well as Organ-on-a-chip devices.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="band-title">
+      <div class="wrap" data-mark="Skills">
+        <h2>My Skills</h2>
+        <span class="divider" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="wrap rows">
+      <article class="row">
+        <figure class="media"><div class="plate">
+          <img src="assets/numerical-simulation.jpg" alt="3D simulation of a rotating particle in a channel, with the velocity field shown on cross-sections" width="636" height="530" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Numerical Simulations</h3>
+          <p>I use common modeling and analysis packages, such as COMSOL Multiphysics, to simulate complex fluid flows in microfluidic devices. I developed a direct numerical simulation (DNS) model to increase the accuracy of simulations.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <figure class="media"><div class="plate">
+          <svg viewBox="0 0 640 470" role="img" aria-label="Soft lithography in four steps: SU-8 master mold made with a photomask and UV light, PDMS poured and cured over it, the PDMS peeled off, and the PDMS bonded to a glass slide with plasma" font-family="Barlow Semi Condensed, Arial Narrow, sans-serif">
+            <defs>
+              <marker id="uv-head" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8a4fd6"/></marker>
+            </defs>
+            <g transform="translate(10 10)">
+              <rect width="300" height="215" rx="12" fill="#f3f6fb"/>
+              <g stroke="#8a4fd6" stroke-width="2.5" marker-end="url(#uv-head)"><line x1="95" y1="16" x2="95" y2="52"/><line x1="150" y1="16" x2="150" y2="52"/><line x1="205" y1="16" x2="205" y2="52"/></g>
+              <text x="222" y="30" font-size="14" fill="#8a4fd6" font-weight="600">UV</text>
+              <g fill="#2f3b52"><rect x="40" y="62" width="40" height="8"/><rect x="110" y="62" width="50" height="8"/><rect x="235" y="62" width="25" height="8"/></g>
+              <text x="40" y="88" font-size="13" fill="#2f3b52">Photomask</text>
+              <g fill="#243673"><rect x="80" y="124" width="30" height="26"/><rect x="160" y="124" width="75" height="26"/></g>
+              <rect x="40" y="150" width="220" height="14" fill="#9aa3b5"/>
+              <text x="236" y="118" font-size="13" fill="#2f3b52" text-anchor="middle">SU-8</text>
+              <text x="150" y="198" font-size="16" font-weight="600" fill="#2f3b52" text-anchor="middle">1  SU-8 master mold</text>
+            </g>
+            <g transform="translate(330 10)">
+              <rect width="300" height="215" rx="12" fill="#f3f6fb"/>
+              <rect x="40" y="96" width="220" height="54" fill="#bfe6f7" stroke="#009bdf" stroke-width="1.5"/>
+              <g fill="#243673"><rect x="80" y="124" width="30" height="26"/><rect x="160" y="124" width="75" height="26"/></g>
+              <rect x="40" y="150" width="220" height="14" fill="#9aa3b5"/>
+              <path d="M150 30v40" stroke="#009bdf" stroke-width="2.5" stroke-dasharray="4 5"/>
+              <path d="M138 60l12 18 12-18" fill="none" stroke="#009bdf" stroke-width="2.5"/>
+              <text x="52" y="118" font-size="13" fill="#2f3b52">PDMS</text>
+              <text x="150" y="198" font-size="16" font-weight="600" fill="#2f3b52" text-anchor="middle">2  Pour and cure PDMS</text>
+            </g>
+            <g transform="translate(10 245)">
+              <rect width="300" height="215" rx="12" fill="#f3f6fb"/>
+              <path d="M40 34H260V88H235V62H160V88H110V62H80V88H40Z" fill="#bfe6f7" stroke="#009bdf" stroke-width="1.5"/>
+              <g fill="#243673"><rect x="80" y="124" width="30" height="26"/><rect x="160" y="124" width="75" height="26"/></g>
+              <rect x="40" y="150" width="220" height="14" fill="#9aa3b5"/>
+              <path d="M276 112c0-26-4-44-12-60" fill="none" stroke="#2f3b52" stroke-width="2"/>
+              <path d="M258 58l6-10 4 12" fill="none" stroke="#2f3b52" stroke-width="2"/>
+              <text x="150" y="198" font-size="16" font-weight="600" fill="#2f3b52" text-anchor="middle">3  Peel off the PDMS</text>
+            </g>
+            <g transform="translate(330 245)">
+              <rect width="300" height="215" rx="12" fill="#f3f6fb"/>
+              <path d="M40 96H260V150H235V124H160V150H110V124H80V150H40Z" fill="#bfe6f7" stroke="#009bdf" stroke-width="1.5"/>
+              <rect x="30" y="150" width="240" height="13" fill="#e2f0fa" stroke="#8fc3e3" stroke-width="1.5"/>
+              <g fill="#8a4fd6"><path d="M62 150l3-7 3 7-3 7z"/><path d="M138 150l3-7 3 7-3 7z"/><path d="M250 150l3-7 3 7-3 7z"/></g>
+              <text x="40" y="86" font-size="13" fill="#2f3b52">Sealed channels</text>
+              <text x="150" y="198" font-size="16" font-weight="600" fill="#2f3b52" text-anchor="middle">4  Plasma bond to glass</text>
+            </g>
+          </svg>
+        </div></figure>
+        <div class="copy-col">
+          <h3>Soft lithography</h3>
+          <p>I have experience in microfabrication using the prevalent soft lithography method to create microfluidic devices. In this method, first, a master mold is fabricated using SU-8 photoresist and a photomask. Then, PDMS is then poured, cured, and peeled off from the mold. The PDMS is finally sealed to a glass slide with a plasma binder.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <figure class="media"><div class="plate">
+          <img src="assets/cnc-machine.jpg" alt="Tormach 770M benchtop CNC milling machine" width="600" height="600" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>CNC Machining</h3>
+          <p>I utilized CNC micro-milling to fabricate microfluidic devices. In this approach, first, a G-code is generated based on the 3D CAD design, drawn in Fusion 360 or SolidWorks. This code guides the CNC machine to carve the design onto a PMMA sheet. The carved layer is then thermally bonded to a raw PMMA layer to seal the microfluidic channels.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <figure class="media"><div class="plate">
+          <img src="assets/microspheres-sem.jpg" alt="Scanning electron microscope image of microspheres, 20 micrometre scale bar" width="560" height="408" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Microsphere Fabrication</h3>
+          <p>I have experience in fabricating microspheres using the conventional double emulsion method, specifically for water-in-oil-in-water (W/O/W) emulsions, which are used for encapsulating drugs and active ingredients.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <figure class="media"><div class="plate">
+          <img src="assets/cell-culture.jpg" alt="Endothelial cells cultured in a straight openable microfluidic device: the device, a fluorescence view of the channel, and phase-contrast images of the cell layer" width="1200" height="1092" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Cell Culture</h3>
+          <p>I have experience in cell culture techniques and have conducted cell viability assays on a few cells, including the MCF-7, MDA-MB-231 breast cancer lines, and Human Umbilical Vein Endothelial Cells (HUVEC).</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="band-title">
+      <div class="wrap" data-mark="Projects">
+        <h2>Project</h2>
+        <span class="divider" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="wrap rows">
+      <article class="row project">
+        <figure class="media"><div class="plate">
+          <img src="assets/serpentine-focusing.jpg" alt="Particle in a channel cross-section with the flow field, streamlines around the particle, and the pressure on its surface" width="821" height="796" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Inertial particle focusing in serpentine channels on a centrifugal platform</h3>
+          <p>This project utilizes a centrifugal platform to move Newtonian fluid and particles in serpentine channels in order to focus particles at the outlet of the channel. Direct Numerical Simulation (DNS) is performed to calculate the inertial lift force acting on particles in the cross section of the channel. The effects of different parameters, including the corner angle of the channel, particle size, and particle density, on the focusing performance of the serpentine channel are investigated.</p>
+        </div>
+      </article>
+
+      <article class="row project">
+        <figure class="media"><div class="plate">
+          <img src="assets/fast-prediction.jpg" alt="Triangular and rectangular channel cross-sections with matching velocity profiles and particle force maps" width="605" height="442" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>A method for fast prediction of inertial focusing patterns in non-rectangular channel cross-sections</h3>
+          <p>In this project, inertial particle focusing in rectangular channels has been investigated. Based on these findings, a analytical method has been proposed to predict the focusing patterns of particles in channels with non-rectangular cross-sections. This method is based on the idea that the velocity profile of a non-rectangular cross-section can be represented by a superposition of velocity profiles from rectangular channels. As the inertial lift force is correlated with the velocity profile, it is hypothesized that particle focusing in the non-rectangular section is analogous to that in rectangular channels.</p>
+        </div>
+      </article>
+
+      <article class="row project">
+        <figure class="media"><div class="plate tall">
+          <img src="assets/viscoelastic-forces.jpg" alt="(a) A particle in a straight channel segment with flow along x. (c) Inertial lift and elastic force vectors in a quarter of the square cross-section" width="900" height="923" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Particle motions in viscoelastic fluid flows</h3>
+          <p>In this project, the focusing patterns of particles in the cross-sections of straight channels with square and rectangular geometries are examined, considering various flow rates and concentrations of PEO solution, a viscoelastic fluid. Figure a illustrates the modeling of particle motion in a segment of a straight channel, with fluid flow directed in the x-axis. The flow of the polymeric fluid is modeled using the Oldroyd-B constitutive equation. Figure c shows vector field plot of inertial lift (red vectors) and elastic (blue vectors) forces in the first quarter of cross section of the square channel for three significant areas (locations of particles a, b and c). Due to symmetry, only the first quarter is considered.</p>
+        </div>
+      </article>
+
+      <article class="row project">
+        <figure class="media"><div class="plate">
+          <img src="assets/double-emulsion.jpg" alt="Double emulsion process from PVA solution to W1/O/W2 microspheres and their size distribution, and the serpentine inertial device with sample inlet, sheath flow and five outlets" width="1400" height="1080" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>An integrative method to increase the reliability of conventional double emulsion method</h3>
+          <p>In this project, the effect of different parameters of the conventional double emulsion method on microsphere morphology and size has been investigated. Moreover, by incorporating the conventional double emulsion method with a high throughput inertial microfluidics device, microspheres with a narrow size distribution have been obtained.</p>
+        </div>
+      </article>
+
+      <article class="row project">
+        <figure class="media">
+          <div class="plate photo">
+            <img src="assets/rocker-pump-slider.jpg" alt="Top view of the transparent mini rocker-based pump with the slider labelled" width="343" height="270" loading="lazy">
+          </div>
+          <div class="thumbs">
+            <div class="plate"><img src="assets/rocker-pump-1.jpg" alt="The assembled mini pump photographed from above" width="900" height="1200" loading="lazy"></div>
+            <div class="plate"><img src="assets/rocker-pump-2.jpg" alt="The mini pump with its gear train visible" width="900" height="1200" loading="lazy"></div>
+          </div>
+        </figure>
+        <div class="copy-col">
+          <h3>Fabrication of a mini rocker-based pump for organ-on-a-chip platforms</h3>
+          <p>Most Organ-On-a-Chip (OOC) studies use commercial pumps, such as syringe and peristaltic pumps, which are large and heavy. These pumps have not been designed for OOC devices. They involve lengthy tubing, increasing the risk of bubble generation and consequent cell death. Furthermore, routine microscope imaging becomes cumbersome due to the need to disconnect the device from the pump.</p>
+          <p>Addressing these limitations, the mini rocker-based pump was developed with two primary objectives: 1) to facilitate imaging and 2) to generate physiologic oscillatory flow in a short loop with minimal footprint. First, because of the small footprint of the planned pump design, it can be carried with the OOC device in a plate for microscope imaging and returned to the incubator without needing to connect and disconnect the tubes. Second, the pump can generate rectangular oscillatory flow with adjustable amplitude and frequency in a short loop, decreasing the chance of bubble formation.</p>
+        </div>
+      </article>
+
+      <article class="row project">
+        <figure class="media"><div class="plate tall">
+          <img src="assets/openable-device.jpg" alt="Panel a: the two PMMA layers of the openable device. Panel b: the closed device with its channel filled with red dye" width="334" height="532" loading="lazy">
+        </div></figure>
+        <div class="copy-col">
+          <h3>Developing a method for creating openable microfluidic devices</h3>
+          <p>Organ-on-a-chip (OOC) devices can replicate in vivo conditions, but they often pose challenges for downstream analyses, e.g., SEM, AFM, and histological studies. They also lack real-time control over cell spacing. To address these limitations, in this project I developed a technique allows the creation of openable microfluidic devices without requiring any flexible layer (e.g. O-ring), or any adhesive liquid. Instead of using the common permanent bonding approach, a tongue and groove joint structure, similar to that found in Lego toys, is utilized to interlock two plastic PMMA layers.</p>
+          <p>A simple example of a microfluidic device fabricated using this method is illustrated here. The top layer contains a microfluidic design, which itself contains a straight channel with inlet and outlet holes. An extruded tongue structure is present on the periphery of the design, while the bottom layer contains a groove with similar dimensions to the tongue (Figure a). Figure b shows the closed microfluidic device which is filled with red dye.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="band-title">
+      <div class="wrap" data-mark="Videos">
+        <h2>Videos</h2>
+        <span class="divider" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="wrap videos">
+      <figure class="video-card">
+        <div class="plate">
+          <video id="video-pump" src="assets/rocker-pump-demo.mp4" poster="assets/rocker-pump-demo-poster.jpg" width="960" height="540" muted playsinline controls preload="none" aria-label="The mini rocker-based pump running on a rocking platform next to the microscope"></video>
+        </div>
+        <h3>Mini rocker-based pump in operation</h3>
+        <p>The pump runs on a rocking platform beside the microscope, connected by short tubing to the device under observation.</p>
+      </figure>
+      <figure class="video-card">
+        <div class="plate">
+          <video class="auto" src="assets/spiral-particles.mp4" poster="assets/spiral-particles-poster.jpg" width="966" height="620" muted loop playsinline controls preload="none" aria-label="Simulation of particles moving through a spiral microchannel"></video>
+        </div>
+        <h3>Particle trajectories in a spiral microchannel</h3>
+        <p>Simulated particle tracks through a spiral microchannel.</p>
+      </figure>
+      <figure class="video-card">
+        <div class="plate">
+          <video class="auto" src="assets/serpentine-particles.mp4" poster="assets/serpentine-particles-poster.jpg" width="760" height="412" muted loop playsinline controls preload="none" aria-label="Simulation of particles moving through a serpentine microchannel"></video>
+        </div>
+        <h3>Particle trajectories in a serpentine microchannel</h3>
+        <p>Simulated particle tracks through a serpentine microchannel.</p>
+      </figure>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="band-title">
+      <div class="wrap" data-mark="Papers">
+        <h2>Publications</h2>
+        <span class="divider" aria-hidden="true"></span>
+        <p>Full list and citations on <a href="https://scholar.google.com/citations?user=xrf7yGUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+      </div>
+    </div>
+    <div class="wrap pubs-wrap">
+      <div class="highlights">
+        <figure class="media">
+          <div class="plate"><img src="assets/lab-on-a-chip-cover.jpg" alt="Cover of Lab on a Chip volume 20 issue 6, illustrating particles in a curved microchannel" width="640" height="838" loading="lazy"></div>
+          <figcaption>Cover article: <em>Lab on a Chip</em>, Vol. 20, No. 6 (21 March 2020), “Computational inertial microfluidics: a review”.</figcaption>
+        </figure>
+        <figure class="media">
+          <div class="plate"><img src="assets/pof-editors-pick.jpg" alt="Physics of Fluids Editor's Picks listing for Inertial particle focusing in serpentine channels on a centrifugal platform" width="477" height="520" loading="lazy"></div>
+          <figcaption>Editor’s Pick: <em>Physics of Fluids</em>, 22 January 2018, “Inertial particle focusing in serpentine channels on a centrifugal platform”.</figcaption>
+        </figure>
+      </div>
+
+      <div class="pub-group">
+        <h3>Journal articles</h3>
+        <ol class="pubs">
+          <li><span class="yr">2023</span><p>Dezhkam, R., Souderjani, A. S., Shamloo, A., Eskandarisani, M., &amp; <strong>Mashhadian, A.</strong> Numerical investigation of centrifugal passive cell separation in three types of serpentine microchannels and comparison with fixed platform. <em>Journal of Industrial and Engineering Chemistry</em>, 124, 240–249.</p></li>
+          <li><span class="yr">2022</span><p>Hamdi, E., Dezhkam, R., Shamloo, A., &amp; <strong>Mashhadian, A.</strong> microAI: A machine learning tool for fast calculation of lift coefficients in microchannels. <em>arXiv preprint</em> <a href="https://arxiv.org/abs/2210.11591" target="_blank" rel="noopener">arXiv:2210.11591</a>.<span class="badge">Preprint</span></p></li>
+          <li><span class="yr">2022</span><p><strong>Mashhadian, A.</strong>, Afjoul, H., &amp; Shamloo, A. An integrative method to increase the reliability of conventional double emulsion method. <em>Analytica Chimica Acta</em>, 1197, 339523.</p></li>
+          <li><span class="yr">2021</span><p>Abdolmaleki, M., <strong>Mashhadian, A.</strong>, Amiri, S., Esfahanian, V., &amp; Afshin, H. Numerical-experimental geometric optimization of the Ahmed body and analyzing boundary layer profiles. <em>Journal of Optimization Theory and Applications</em>.</p></li>
+          <li><span class="yr">2021</span><p>Amerizadeh, A., <strong>Mashhadian, A.</strong>, Farahnak-Ghazani, M., Arjmandi, H., Rad, M. A., Shamloo, A., Vosoughi, M., &amp; Nasir-Kenari, M. Bacterial receiver prototype for molecular communication using rhamnose operon in a microfluidic environment. <em>IEEE Transactions on NanoBioscience</em>.</p></li>
+          <li><span class="yr">2020</span><p>Bazaz, S. R., <strong>Mashhadian, A.</strong>, Ehsani, A., Saha, S., Krueger, T., &amp; Warkiani, M. E. Computational inertial microfluidics: a review. <em>Lab on a Chip</em>, 20(6).<span class="badge">Cover article</span></p></li>
+          <li><span class="yr">2019</span><p><strong>Mashhadian, A.</strong>, &amp; Shamloo, A. Inertial microfluidics: a method for fast prediction of focusing pattern of particles in the cross section of the channel. <em>Analytica Chimica Acta</em>, 1083, 137–149.</p></li>
+          <li><span class="yr">2019</span><p>Raoufi, M. A., <strong>Mashhadian, A.</strong>, Niazmand, H., Asadnia, M., Razmjou, A., &amp; Warkiani, M. E. Experimental and numerical study of elasto-inertial focusing in straight channels. <em>Biomicrofluidics</em>, 13(3), 034103.</p></li>
+          <li><span class="yr">2018</span><p>Shamloo, A., &amp; <strong>Mashhadian, A.</strong> Inertial particle focusing in serpentine channels on a centrifugal platform. <em>Physics of Fluids</em>, 30(1).<span class="badge">Editor’s Pick</span></p></li>
+          <li><span class="yr">2017</span><p>Korayem, A. H., <strong>Mashhadian, A.</strong>, &amp; Korayem, M. H. Vibration analysis of different AFM cantilever with a piezoelectric layer in the vicinity of rough surfaces. <em>European Journal of Mechanics – A/Solids</em>.</p></li>
+        </ol>
+      </div>
+
+      <div class="pub-group">
+        <h3>Conference papers</h3>
+        <ol class="pubs">
+          <li><span class="yr">2021</span><p>Shamloo, A., Souderjani, A. S., Dezhkam, R., &amp; <strong>Mashhadian, A.</strong> Designing and modeling a centrifugal micromixer for continuous circulating tumor cells lysis. <em>28th National and 6th International Iranian Conference on Biomedical Engineering (ICBME)</em>, IEEE, 193–198.</p></li>
+          <li><span class="yr">2018</span><p>Shamloo, A., &amp; <strong>Mashhadian, A.</strong> An inertial microfluidic device for targeted cell separation. <em>New Biotechnology</em>, 44, S129.</p></li>
+          <li><span class="yr">2018</span><p>Raoufi, M. A., <strong>Mashhadian, A.</strong>, Asadnia, M., &amp; Warkiani, M. E. Experimental and numerical study of viscoelasticity effects on particle focusing within a straight trapezoidal channel. <em>22nd International Conference on Miniaturized Systems for Chemistry and Life Sciences (MicroTAS)</em>, 468–471.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="band-title">
+      <div class="wrap" data-mark="Contact">
+        <h2>Contact</h2>
+        <span class="divider" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="wrap contact-cards">
+      <div class="contact-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+        <h3>Email</h3>
+        <div class="value">
+          <a id="email-contact" href="mailto:ali.mashhadian@mail.utoronto.ca">ali.mashhadian@mail.utoronto.ca</a>
+          <button class="copy" type="button" id="copy-email-contact" data-copy="ali.mashhadian@mail.utoronto.ca" data-target="email-contact">Copy</button>
+        </div>
+      </div>
+      <div class="contact-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg>
+        <h3>LinkedIn</h3>
+        <div class="value"><a href="https://www.linkedin.com/in/ali-mashhadian-3524581b6/" target="_blank" rel="noopener">linkedin.com/in/ali-mashhadian-3524581b6</a></div>
+      </div>
+      <div class="contact-card">
+        <svg class="ico" aria-hidden="true"><use href="#i-scholar"/></svg>
+        <h3>Google Scholar</h3>
+        <div class="value"><a href="https://scholar.google.com/citations?user=xrf7yGUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Ali Mashhadian on Google Scholar</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© Ali Mashhadian</span>
+    <a href="#home">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var reset = function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      var selectText = function () {
+        var el = document.getElementById(btn.dataset.target);
+        if (!el) return;
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = 'Selected';
+        reset();
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+          btn.textContent = 'Copied';
+          reset();
+        }, selectText);
+      } else {
+        selectText();
+      }
+    });
+  });
+
+  // Simulation clips play on their own (muted, looped) unless the viewer prefers reduced motion.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video.auto').forEach(function (v) {
+      v.preload = 'auto';
+      v.autoplay = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>
