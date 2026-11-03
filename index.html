@@ -95,11 +95,6 @@ img { max-width: 100%; }
 
 /* Hero */
 .hero { background: var(--hero-bg); position: relative; overflow: hidden; }
-.hero::after {
-  content: ""; position: absolute; width: 46vw; max-width: 620px; aspect-ratio: 1;
-  right: -12vw; top: -14vw; border-radius: 50%;
-  border: 1px solid var(--lilac); pointer-events: none;
-}
 .hero .wrap {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center; gap: clamp(2rem, 6vw, 5rem);
@@ -127,9 +122,15 @@ img { max-width: 100%; }
   background: var(--surface); color: var(--muted); border: 1px solid var(--line);
 }
 .copy:hover { color: var(--primary); border-color: var(--primary); }
-.portrait { position: relative; justify-self: center; width: min(100%, 410px); margin: 0; }
+.portrait { position: relative; isolation: isolate; justify-self: center; width: min(100%, 410px, 30vw); margin: 0; }
+/* Complete ring centred behind the photo; the width above keeps it inside the hero */
+.portrait::after {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 158%; aspect-ratio: 1;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  border: 1px solid var(--primary); opacity: 0.45; pointer-events: none;
+}
 .portrait::before {
-  content: ""; position: absolute; inset: 7% -7% -5% 9%;
+  content: ""; position: absolute; z-index: -2; inset: 7% -7% -5% 9%;
   background: var(--lilac); border-radius: 240px 240px 28px 28px;
 }
 .portrait img {
@@ -221,7 +222,8 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
 }
 @media (max-width: 780px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-  .portrait { order: -1; width: min(72%, 300px); justify-self: start; }
+  .portrait { order: -1; width: min(66%, 300px); justify-self: center; margin-block: 1.25rem 1.5rem; }
+  .portrait::after { width: min(158%, calc(100vw - 12px)); }
   .row, .row.project { grid-template-columns: minmax(0, 1fr); }
   .highlights { grid-template-columns: minmax(0, 1fr); }
   .plate.tall img { max-height: 460px; }
