@@ -398,101 +398,6 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
     </div>
     <div class="wrap rows">
       <article class="row project">
-        <figure class="media"><div class="plate">
-          <svg class="diagram" viewBox="0 0 420 520" role="img" aria-label="The harness's six agent roles. Planning happens once: the researcher reads the literature, the planner writes a step plan and the critic challenges it. Then, for each step, the builder writes and runs the code and the verifier tests and validates it. If the step fails, triage finds the cause and the builder fixes it. If it passes, the next step adds one more mechanism, until every step has passed and the full model is done." font-family="Barlow Semi Condensed, Arial Narrow, sans-serif">
-            <defs>
-              <marker id="hz-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#009bdf"/></marker>
-              <marker id="hz-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c0392b"/></marker>
-              <marker id="hz-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8a4fd6"/></marker>
-            </defs>
-            <rect width="420" height="196" rx="12" fill="#f3f6fb"/>
-            <rect y="206" width="420" height="314" rx="12" fill="#f3f6fb"/>
-            <g font-size="12" font-weight="700" letter-spacing="1.5" fill="#758398" text-anchor="end">
-              <text x="396" y="28">PLAN ONCE</text>
-              <text x="396" y="234">THEN, FOR EACH STEP</text>
-            </g>
-            <g fill="#ffffff" stroke="#243673" stroke-width="1.5">
-              <rect x="24" y="40" width="200" height="58" rx="10"/>
-              <rect x="24" y="124" width="200" height="58" rx="10"/>
-              <rect x="262" y="124" width="140" height="58" rx="10"/>
-              <rect x="24" y="250" width="200" height="58" rx="10"/>
-              <rect x="24" y="350" width="200" height="58" rx="10"/>
-              <rect x="262" y="350" width="140" height="58" rx="10"/>
-              <rect x="24" y="450" width="200" height="50" rx="10"/>
-              <rect x="262" y="450" width="140" height="50" rx="10"/>
-            </g>
-            <g text-anchor="middle" fill="#243673" font-weight="700" font-size="18">
-              <text x="124" y="65">Researcher</text>
-              <text x="124" y="149">Planner</text>
-              <text x="332" y="149">Critic</text>
-              <text x="124" y="275">Builder</text>
-              <text x="124" y="375">Verifier</text>
-              <text x="332" y="375">Triage</text>
-              <text x="124" y="472" font-size="17">Next step</text>
-              <text x="332" y="472" font-size="17">Full model</text>
-            </g>
-            <g text-anchor="middle" fill="#56647a" font-size="13">
-              <text x="124" y="86">reads the literature</text>
-              <text x="124" y="170">writes the step plan</text>
-              <text x="332" y="170">challenges the plan</text>
-              <text x="124" y="296">writes and runs the code</text>
-              <text x="124" y="396">tests and validates</text>
-              <text x="332" y="396">finds the cause</text>
-              <text x="124" y="491">adds one more mechanism</text>
-              <text x="332" y="491">every step passed</text>
-            </g>
-            <g stroke="#009bdf" stroke-width="2" fill="none" marker-end="url(#hz-blue)">
-              <line x1="124" y1="98" x2="124" y2="123"/>
-              <line x1="224" y1="145" x2="261" y2="145"/>
-              <line x1="262" y1="163" x2="225" y2="163"/>
-              <line x1="124" y1="182" x2="124" y2="249"/>
-              <line x1="124" y1="308" x2="124" y2="349"/>
-              <line x1="224" y1="475" x2="261" y2="475"/>
-            </g>
-            <g stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#hz-red)">
-              <line x1="224" y1="379" x2="261" y2="379"/>
-              <path d="M332 350V279H225"/>
-            </g>
-            <g stroke="#8a4fd6" stroke-width="2" fill="none" marker-end="url(#hz-purple)">
-              <line x1="124" y1="408" x2="124" y2="449"/>
-              <path d="M24 475H12V279H23"/>
-            </g>
-            <g font-size="13" font-weight="600">
-              <text x="242" y="371" fill="#c0392b" text-anchor="middle">fails</text>
-              <text x="340" y="320" fill="#c0392b">fix</text>
-              <text x="132" y="433" fill="#8a4fd6">passes</text>
-            </g>
-          </svg>
-        </div></figure>
-        <div class="copy-col">
-          <h3>Multi-agent harness for reliable multiphysics modeling</h3>
-          <p class="meta">2026 · Funded by Eli Lilly and Company</p>
-          <p>Industrial multiphysics models can take expert researchers months or years to build. This harness builds them end to end with six agent roles, run as headless Claude Code and Codex sessions. The planner breaks the problem into steps that add the physics one mechanism at a time, and each step must pass independent verification tests and validation against published benchmarks before the next one starts.</p>
-          <p>I have used it to rebuild expert-developed models, including lithium-ion batteries and fluid–structure interaction, in runs of up to a month. In one case it found a significant error in a published model. Much of the work is oversight: over long runs, agents loosen the very checks meant to catch their mistakes, so the harness now tests its own gates with negative controls before trusting them.</p>
-        </div>
-      </article>
-
-      <article class="row project">
-        <figure class="media">
-          <a class="plate" title="Open the figure full size" href="assets/mpsimbench-overview.jpg" target="_blank" rel="noopener"><img src="assets/mpsimbench-overview.jpg" alt="Overview of MPSimBench. Top: reference simulations of four released tasks: a Kármán vortex street (Basilisk), aneurysm flow (RheoTool), hypersonic flow (OpenFOAM 13) and blood cells (HemoCell). Middle: a task bundle goes to an LLM agent and harness working in a network-isolated Apptainer container, and a hidden evaluator checks contract gates, quantities of interest against a reference, and physical invariants, then returns solved or not solved. Bottom: a task family with original, transformed and held-out members." width="2000" height="1540" loading="lazy"></a>
-        </figure>
-        <div class="copy-col">
-          <h3>MPSimBench: a benchmark for AI agents on multiphysics simulation</h3>
-          <p class="meta">2026 · Paper in preparation</p>
-          <p>Most benchmarks for AI agents check whether code runs, not whether the science is right. MPSimBench has 55 end-to-end simulation tasks built from official tutorials and peer-reviewed studies on four open-source solvers: OpenFOAM, RheoTool, HemoCell and Basilisk. Each task is changed so its answer can't be retrieved from a published example.</p>
-          <p>Hidden, physics-based graders catch wrong results even when a simulation runs without errors. I built the reference solutions through more than 1,000 verification runs, and I read agent transcripts to find ways a grader could be passed without solving the task, then close them.</p>
-        </div>
-      </article>
-
-      <article class="row project text-only">
-        <div class="copy-col">
-          <h3>Pharmacokinetic model discovery workflow</h3>
-          <p class="meta">2026 · Funded by Eli Lilly and Company</p>
-          <p>A multi-agent workflow in Claude Code that discovers mechanistic pharmacokinetic (PK) models, which predict a drug's level in the blood and guide formulation and dosing. Agents review the literature, propose competing models, screen them for mass conservation and physiological consistency, and calibrate the viable ones with Bayesian inference.</p>
-        </div>
-      </article>
-
-      <article class="row project">
         <figure class="media">
           <a class="plate" href="assets/protein-spectra.png" target="_blank" rel="noopener" title="Open the figure full size"><img src="assets/protein-spectra.png" alt="Raman and FTIR spectra of a monoclonal antibody on chromatography resin at concentrations from 0 to 133.2 mg/mL. Top: baseline-corrected Raman spectra, where the protein bands (phenylalanine near 1003 and amide I near 1670 per cm) grow with concentration while a resin band near 1085 per cm shrinks. Bottom: FTIR absorbance, where the amide I and amide II bands rise steadily with concentration." width="1160" height="1340" loading="lazy"></a>
         </figure>
@@ -648,7 +553,6 @@ figcaption { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
         <h3>Preprints and papers in preparation</h3>
         <ol class="pubs">
           <li><span class="yr">2026</span><p>Ward-Bond, J., <strong>Mashhadian, A.</strong>, Chan, T. C. Y., &amp; Young, E. W. K. Geometry-free prediction of inertial lift forces in microfluidic devices using deep learning. <em>arXiv preprint</em> <a href="https://arxiv.org/abs/2605.08109" target="_blank" rel="noopener">arXiv:2605.08109</a>. Submitted to <em>Lab on a Chip</em>.<span class="badge">Preprint</span></p></li>
-          <li><span class="yr">2026</span><p><strong>Mashhadian, A.</strong>, et al. MPSimBench: a benchmark for AI agents on end-to-end multiphysics simulation.<span class="badge">In preparation</span></p></li>
           <li><span class="yr">2026</span><p><strong>Mashhadian, A.</strong>, et al. A multi-agent framework for reliable end-to-end multiphysics modeling.<span class="badge">In preparation</span></p></li>
         </ol>
       </div>
